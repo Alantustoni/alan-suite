@@ -1,0 +1,86 @@
+{
+  "empresas_validas": [
+    "ALFAMETAL MATRIZ",
+    "ALFAMETAL MG",
+    "BETAVIARIA MATRIZ",
+    "BETAVIARIA PE"
+  ],
+  "cnpjs_excluidos": [],
+  "grupos_empresa": {
+    "ALFAMETAL": [
+      "ALFAMETAL MATRIZ",
+      "ALFAMETAL MG"
+    ],
+    "BETAVIARIA": [
+      "BETAVIARIA MATRIZ",
+      "BETAVIARIA PE"
+    ]
+  },
+  "remover_texto": [
+    "USINAS",
+    "USIMINAS",
+    "ARCELOR",
+    "ARCELORMITTAL",
+    "ARCELORMITTAL PLANOS",
+    "USINA SIDERURGICA",
+    "USINA SIDERÚRGICA",
+    "COMPANHIA SIDERURGICA",
+    "COMPANHIA SIDERÚRGICA"
+  ],
+  "abreviacoes_fornecedor": {
+    "GAMMA GASOTEC GASES INDUSTRIAIS": "GAMMA GASOTEC",
+    "GAMMA GASOTEC GASES": "GAMMA GASOTEC",
+    "ORBITA SISTEMAS INDUSTRIA": "ORBITA SISTEMAS",
+    "POLIMERA RECICLAGEM INDUSTRIAL": "POLIMERA RECICLAGEM",
+    "ZK CERTIFICACAO": "ZK CERTIFICACAO",
+    "ZK CERTIFICAÇÃO": "ZK CERTIFICACAO"
+  },
+  "feriados_nacionais": [
+    "01/01",
+    "21/04",
+    "01/05",
+    "07/09",
+    "12/10",
+    "02/11",
+    "15/11",
+    "25/12"
+  ],
+  "usinas": {
+    "padronizacao_empresa": {
+      "USIMINAS": [
+        "USIMINAS",
+        "USINA SIDERURGICA",
+        "USINAS SIDERURGICAS"
+      ],
+      "ARMAR": [
+        "ARCELOR",
+        "MITTAL"
+      ],
+      "CSN": [
+        "CSN",
+        "SIDERURGICA NACIONAL"
+      ]
+    },
+    "nf_digitos_sufixo_padrao": 2,
+    "nf_regras_especiais": [
+      {
+        "empresa": "CSN",
+        "nf_comeca_com": "195",
+        "digitos_sufixo": 3
+      }
+    ],
+    "nf_tamanho_minimo": 3
+  },
+  "ret": {
+    "recalcular_trailer": true,
+    "renumerar_sequencial": false,
+    "linhas_cabecalho": 3,
+    "linhas_rodape": 2,
+    "prefixos_ignorados": [
+      "23700015",
+      "23700021I03"
+    ],
+    "trailer_lote_legado": "23700025         000032000000000000000000000000000000000000000000",
+    "trailer_arquivo_legado": "23799999         000002000108"
+  }
+}

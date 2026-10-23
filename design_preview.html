@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALAN Suite — Prévia dos 3 designs</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Segoe UI",system-ui,sans-serif;background:#0D1117;color:#E6EDF3;font-size:14px;min-height:100vh}
+
+  /* ── seletor de tema ── */
+  .picker{position:sticky;top:0;z-index:50;background:#161B22;border-bottom:1px solid #30363D;padding:14px 24px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .picker .t{font-weight:700;margin-right:8px;font-size:15px}
+  .pbtn{border:1.5px solid #30363D;background:#0D1117;color:#E6EDF3;border-radius:10px;padding:10px 18px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;transition:.15s}
+  .pbtn:hover{border-color:#58A6FF}
+  .pbtn.on{background:#1F6FEB;border-color:#1F6FEB;color:#fff}
+  .pdesc{width:100%;font-size:12px;color:#8B949E;padding-top:2px}
+
+  /* ══════════ TEMAS (variáveis) ══════════ */
+  .stage{--sb:#0F1D2B;--sb-item:#B9CDE0;--sb-active:#1768AE;--sb-active-tx:#fff;--bg:#F4F7FB;--card:#FFFFFF;--card-border:#E3EAF3;--shadow:0 2px 10px rgba(13,38,63,.08);--ink:#16283C;--ink2:#5B7089;--ink3:#8CA0B5;--accent:#1768AE;--accent-tx:#fff;--ok:#16A34A;--ok-bg:#E8F7EE;--warn:#B45309;--warn-bg:#FEF3E2;--err:#DC2626;--err-bg:#FDEBEB;--info-bg:#E8F1FB;--th:#0F1D2B;--th-tx:#fff;--zebra:#F7FAFD;--track:#E8F1FB}
+
+  .stage[data-theme="dark"]{--sb:#0A0E14;--sb-item:#93A4B8;--sb-active:#1F6FEB;--sb-active-tx:#fff;--bg:#0D1117;--card:#161B22;--card-border:#30363D;--shadow:0 2px 12px rgba(0,0,0,.45);--ink:#E6EDF3;--ink2:#9DB0C3;--ink3:#6E7F92;--accent:#2E86D6;--accent-tx:#fff;--ok:#3FB950;--ok-bg:#12261A;--warn:#D29922;--warn-bg:#2A2110;--err:#F85149;--err-bg:#2C1315;--info-bg:#12233A;--th:#1F2937;--th-tx:#CBD8E6;--zebra:#1B222C;--track:#21303F}
+
+  .stage[data-theme="claro"]{--sb:#FFFFFF;--sb-item:#5B7089;--sb-active:#EAF2FC;--sb-active-tx:#0B5CAD;--bg:#F8FAFD;--card:#FFFFFF;--card-border:#E7EDF5;--shadow:0 1px 4px rgba(13,38,63,.06);--ink:#1A2B3D;--ink2:#5B7089;--ink3:#93A5B8;--accent:#0B5CAD;--accent-tx:#fff;--ok:#0E9F4E;--ok-bg:#E9F9F0;--warn:#C2620A;--warn-bg:#FFF4E5;--err:#D92D20;--err-bg:#FEECEB;--info-bg:#EAF2FC;--th:#F0F5FB;--th-tx:#31465C;--zebra:#FAFCFE;--track:#EAF2FC}
+
+  /* ══════════ mock do app ══════════ */
+  .stage{display:flex;min-height:calc(100vh - 120px);background:var(--bg);transition:background .25s}
+  .sb{width:230px;background:var(--sb);flex-shrink:0;padding:22px 0;display:flex;flex-direction:column;transition:.25s}
+  .stage[data-theme="claro"] .sb{border-right:1px solid var(--card-border)}
+  .sb .logo{padding:0 20px 16px;color:var(--sb-active-tx)}
+  .stage[data-theme="premium"] .sb .logo,.stage[data-theme="dark"] .sb .logo{color:#fff}
+  .sb .logo b{font-size:17px;display:block}
+  .sb .logo span{font-size:10.5px;opacity:.65}
+  .nav{display:flex;flex-direction:column;gap:3px;padding:6px 10px}
+  .ni{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:9px;color:var(--sb-item);font-size:13px;cursor:pointer;transition:.15s}
+  .ni:hover{background:rgba(128,160,200,.13)}
+  .ni.on{background:var(--sb-active);color:var(--sb-active-tx);font-weight:700}
+  .ni .dot{width:22px;text-align:center}
+  .sb .foot{margin-top:auto;padding:14px 20px;font-size:10px;color:var(--sb-item);opacity:.6}
+
+  .main{flex:1;padding:26px 30px;max-width:1000px}
+  .crumb{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+  h2{color:var(--ink);font-size:21px}
+  .sub{color:var(--ink2);margin:4px 0 18px;font-size:13px}
+
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+  .tile{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);border-radius:4px 0 0 4px}
+  .tile.ok::before{background:var(--ok)} .tile.warn::before{background:var(--warn)} .tile.err::before{background:var(--err)}
+  .tile .l{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink2)}
+  .tile .v{font-size:24px;font-weight:800;color:var(--ink);margin-top:4px;font-variant-numeric:tabular-nums}
+  .tile.ok .v{color:var(--ok)} .tile.warn .v{color:var(--warn)} .tile.err .v{color:var(--err)}
+  .tile .s{font-size:11px;color:var(--ink3);margin-top:2px}
+
+  .card{background:var(--card);border:1px solid var(--card-border);border-radius:14px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px}
+  .card h3{color:var(--ink);font-size:14px;margin-bottom:12px}
+
+  .btnrow{display:flex;gap:9px;margin-bottom:4px;flex-wrap:wrap;align-items:center}
+  .btn{background:var(--accent);color:var(--accent-tx);border:none;border-radius:9px;padding:10px 17px;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit}
+  .btn.sec{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+  .btn.ghost{background:transparent;color:var(--ink3);border:1.5px dashed var(--card-border)}
+  .badge{margin-left:auto;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px}
+  .b-warn{background:var(--warn-bg);color:var(--warn)}
+
+  .steps{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+  .step{font-size:11.5px;font-weight:700;padding:7px 13px;border-radius:8px;background:var(--card);border:1px solid var(--card-border);color:var(--ink3)}
+  .step.done{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+  .step.cur{background:var(--accent);color:var(--accent-tx);border-color:transparent}
+
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th{background:var(--th);color:var(--th-tx);text-align:left;padding:8px 10px;font-size:10.5px;letter-spacing:.5px;text-transform:uppercase}
+  th:first-child{border-radius:8px 0 0 8px} th:last-child{border-radius:0 8px 8px 0}
+  td{padding:8px 10px;color:var(--ink);border-bottom:1px solid var(--card-border);font-variant-numeric:tabular-nums}
+  tr:nth-child(even) td{background:var(--zebra)}
+  .pill{font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:14px}
+  .p-ok{background:var(--ok-bg);color:var(--ok)} .p-warn{background:var(--warn-bg);color:var(--warn)} .p-err{background:var(--err-bg);color:var(--err)}
+
+  .bars{display:flex;flex-direction:column;gap:9px}
+  .brow{display:grid;grid-template-columns:150px 1fr 52px;gap:10px;align-items:center;font-size:12px;color:var(--ink2)}
+  .brow .tr{height:12px;background:var(--track);border-radius:4px;overflow:hidden}
+  .brow .fl{height:100%;background:var(--accent);border-radius:4px}
+  .brow.g .fl{background:var(--ok)}
+  .brow .pc{text-align:right;font-weight:800;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="picker">
+  <span class="t">🎨 Escolha o design:</span>
+  <button class="pbtn on" data-t="premium" onclick="setTheme('premium',this)">1 · ERP Premium escuro</button>
+  <button class="pbtn" data-t="dark" onclick="setTheme('dark',this)">2 · Dark mode completo</button>
+  <button class="pbtn" data-t="claro" onclick="setTheme('claro',this)">3 · Claro minimalista</button>
+  <div class="pdesc" id="desc">Sidebar azul-noite profunda, conteúdo claro com cards elevados (sombra suave) e filete colorido nos indicadores — visual sério, tipo Fiori/Totvs moderno.</div>
+</div>
+
+<div class="stage" data-theme="premium" id="stage">
+  <aside class="sb">
+    <div class="logo"><b>ALAN Suite</b><span>Central de Ferramentas Financeiras</span></div>
+    <nav class="nav">
+      <div class="ni on"><span class="dot">◉</span> Início</div>
+      <div class="ni"><span class="dot">▤</span> Organizador DDA</div>
+      <div class="ni"><span class="dot">⇄</span> Remessa × Banco</div>
+      <div class="ni"><span class="dot">⧉</span> Juntador RET</div>
+      <div class="ni"><span class="dot">▦</span> Organizador Usinas</div>
+      <div class="ni"><span class="dot">⚙</span> Configurações</div>
+    </nav>
+    <div class="foot">v1.1 · uso interno</div>
+  </aside>
+
+  <main class="main">
+    <div class="crumb">Painel geral</div>
+    <h2>Bom dia, Alan</h2>
+    <div class="sub">Resumo do dia — atualizado a cada execução dos módulos.</div>
+
+    <div class="tiles">
+      <div class="tile"><div class="l">Execuções hoje</div><div class="v">7</div><div class="s">4 módulos usados</div></div>
+      <div class="tile ok"><div class="l">Conciliados</div><div class="v">312</div><div class="s">R$ 1.284.309,55</div></div>
+      <div class="tile warn"><div class="l">Pendências</div><div class="v">9</div><div class="s">6 DDA · 3 Remessa</div></div>
+      <div class="tile err"><div class="l">Inconsistências</div><div class="v">2</div><div class="s">exigem ação manual</div></div>
+    </div>
+
+    <div class="card">
+      <h3>Fluxo de um módulo (exemplo: Organizador DDA)</h3>
+      <div class="steps">
+        <span class="step done">1. Anexar DDA</span>
+        <span class="step done">2. Processar</span>
+        <span class="step cur">3. Anexar banco e cruzar</span>
+        <span class="step">4. Exportar</span>
+      </div>
+      <div class="btnrow">
+        <button class="btn">📎 Anexar DDA</button>
+        <button class="btn sec">▶ Processar</button>
+        <button class="btn sec">🏦 Anexar banco</button>
+        <button class="btn ghost">⬇ Exportar</button>
+        <span class="badge b-warn">6 pendentes</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Notas pendentes após o cruzamento</h3>
+      <table>
+        <thead><tr><th>Empresa</th><th>Fornecedor</th><th>NF</th><th>Venc.</th><th style="text-align:right">Valor</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>ALFAMETAL MATRIZ</td><td>GAMMA GASOTEC GASES</td><td>88123</td><td>17/07</td><td style="text-align:right">R$ 4.310,00</td><td><span class="pill p-warn">pendente</span></td></tr>
+          <tr><td>ALFAMETAL MG</td><td>METALFORTE LTDA</td><td>10442</td><td>17/07</td><td style="text-align:right">R$ 12.850,77</td><td><span class="pill p-warn">pendente</span></td></tr>
+          <tr><td>BETAVIARIA PE</td><td>PNEUS NORDESTE</td><td>7781</td><td>20/07</td><td style="text-align:right">R$ 6.120,90</td><td><span class="pill p-err">verificar</span></td></tr>
+          <tr><td>ALFAMETAL MATRIZ</td><td>ACOS PLANOS SUL</td><td>90233</td><td>21/07</td><td style="text-align:right">R$ 22.008,14</td><td><span class="pill p-ok">programado</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Taxa de conciliação por módulo</h3>
+      <div class="bars">
+        <div class="brow g"><span>Organizador DDA</span><div class="tr"><div class="fl" style="width:94%"></div></div><span class="pc">94%</span></div>
+        <div class="brow g"><span>Remessa × Banco</span><div class="tr"><div class="fl" style="width:97%"></div></div><span class="pc">97%</span></div>
+        <div class="brow"><span>Juntador RET</span><div class="tr"><div class="fl" style="width:100%"></div></div><span class="pc">100%</span></div>
+        <div class="brow"><span>Organizador Usinas</span><div class="tr"><div class="fl" style="width:100%"></div></div><span class="pc">100%</span></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const descs = {
+  premium: "Sidebar azul-noite profunda, conteúdo claro com cards elevados (sombra suave) e filete colorido nos indicadores — visual sério, tipo Fiori/Totvs moderno.",
+  dark:    "Sistema inteiro escuro (grafite GitHub-style): fundo #0D1117, cards #161B22, acentos azuis vivos — moderno e descansa a vista no uso diário.",
+  claro:   "Tudo claro com sidebar branca, seleção em pílula azul, sombras quase invisíveis e muito respiro — minimalista, estilo Notion/Linear."
+};
+function setTheme(t, btn){
+  document.getElementById('stage').dataset.theme = t;
+  document.querySelectorAll('.pbtn').forEach(b=>b.classList.toggle('on', b===btn));
+  document.getElementById('desc').textContent = descs[t];
+}
+</script>
+</body>
+</html>

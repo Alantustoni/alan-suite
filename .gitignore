@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Build do PyInstaller
+build/
+dist/
+*.exe
+
+# Dados reais NUNCA entram no repositório
+*.ret
+*.RET
+*.txt
+!requirements*.txt
+*.xlsx
+*.xls
+*.csv
+importacao_usinas_*
+
+# Estado local gerado pelo app
+organizador_dda_state.json
+.alan_suite/
