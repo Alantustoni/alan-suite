@@ -2,7 +2,7 @@
 paths.py — Resolução de caminhos da suíte.
 
 Regra: dados do usuário (config, histórico, logs) NUNCA moram dentro do
-.EXE/pasta do programa — vão para ~/.alan_suite. Assim o PyInstaller
+.EXE/pasta do programa — vão para ~/.contas_a_pagar_suite. Assim o PyInstaller
 onefile funciona e nada se perde em atualização de versão.
 """
 from __future__ import annotations
@@ -11,7 +11,7 @@ import shutil
 import sys
 from pathlib import Path
 
-APP_DIR = Path.home() / ".alan_suite"
+APP_DIR = Path.home() / ".contas_a_pagar_suite"
 LOG_DIR = APP_DIR / "logs"
 
 CONFIG_PATH    = APP_DIR / "config.json"
@@ -30,7 +30,7 @@ def resource_dir() -> Path:
 def garantir_dirs() -> None:
     APP_DIR.mkdir(parents=True, exist_ok=True)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
-    # Primeira execução: copia o config.json de fábrica para ~/.alan_suite
+    # Primeira execução: copia o config.json de fábrica para ~/.contas_a_pagar_suite
     if not CONFIG_PATH.exists():
         fabrica = resource_dir() / "config.json"
         if fabrica.exists():

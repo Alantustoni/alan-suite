@@ -1,5 +1,5 @@
 """
-ALAN Suite — entry point.
+Contas a Pagar Suite — entry point.
 
 Startup rápido: só tkinter/customtkinter carregam aqui; pandas e openpyxl
 são importados dentro das threads de trabalho de cada módulo.
@@ -14,18 +14,18 @@ from pathlib import Path
 # garante import do pacote rodando de qualquer diretório
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from alan_suite.core.logger import configurar_logging
-from alan_suite.core.paths import garantir_dirs
+from contas_a_pagar_suite.core.logger import configurar_logging
+from contas_a_pagar_suite.core.paths import garantir_dirs
 
 
 def main() -> None:
     garantir_dirs()
     configurar_logging()
-    logger = logging.getLogger("alan_suite")
+    logger = logging.getLogger("contas_a_pagar_suite")
     logger.info("Iniciando ALAN — Contas a Pagar…")
 
     try:
-        from alan_suite.ui.app import AlanSuiteApp
+        from contas_a_pagar_suite.ui.app import AlanSuiteApp
         app = AlanSuiteApp()
         app.mainloop()
     except Exception:
@@ -34,10 +34,10 @@ def main() -> None:
         try:
             import tkinter.messagebox as mb
             mb.showerror(
-                "ALAN Suite — erro fatal",
+                "Contas a Pagar Suite — erro fatal",
                 "O programa encontrou um erro ao iniciar.\n\n"
                 + traceback.format_exc(limit=5)
-                + "\n\nO log completo está em ~/.alan_suite/logs/")
+                + "\n\nO log completo está em ~/.contas_a_pagar_suite/logs/")
         except Exception:
             pass
         raise

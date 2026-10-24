@@ -7,7 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pytest
 
-from alan_suite.modules.usinas import ProcessadorUsinas, ResultadoUsinas, exportar
+from contas_a_pagar_suite.modules.usinas import ProcessadorUsinas, ResultadoUsinas, exportar
 
 CFG = {
     "padronizacao_empresa": {

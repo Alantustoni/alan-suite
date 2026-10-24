@@ -1,5 +1,5 @@
 """
-ALAN Suite — Central de Ferramentas Financeiras.
+Contas a Pagar Suite — Central de Ferramentas Financeiras.
 
 Reúne em um único sistema as ferramentas da pasta DEV.ALAN:
   • Organizador DDA      (core do DDA V7, integrado)

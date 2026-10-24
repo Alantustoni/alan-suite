@@ -10,7 +10,7 @@ datas += tmp_ret[0]; binaries += tmp_ret[1]; hiddenimports += tmp_ret[2]
 
 a = Analysis(
     ['main.py'],
-    pathex=['alan_suite\\vendor\\remessa_v3'],
+    pathex=['contas_a_pagar_suite\\vendor\\remessa_v3'],
     binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,
@@ -29,7 +29,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='ALAN Suite',
+    name='Contas a Pagar Suite',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

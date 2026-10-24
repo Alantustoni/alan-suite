@@ -1,5 +1,5 @@
 [project]
-name = "alan-suite"
+name = "contas-a-pagar-suite"
 version = "2.9.0"
 description = "Ferramentas desktop de contas a pagar: CNAB240, retorno SISPAG, DDA e conciliação remessa x banco"
 readme = "README.md"

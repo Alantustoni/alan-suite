@@ -14,8 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pytest
 
-from alan_suite.core.utils import formatar_moeda, parse_data_br, parse_valor_br
-from alan_suite.core.config_central import DEFAULT, ConfigCentral
+from contas_a_pagar_suite.core.utils import formatar_moeda, parse_data_br, parse_valor_br
+from contas_a_pagar_suite.core.config_central import DEFAULT, ConfigCentral
 
 
 # ── parse_valor_br ────────────────────────────────────────────────────

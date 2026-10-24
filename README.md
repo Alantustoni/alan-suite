@@ -1,6 +1,6 @@
-# ALAN Suite — Contas a Pagar
+# Contas a Pagar Suite — CNAB240, SISPAG, DDA e conciliação
 
-[![tests](https://github.com/Alantustoni/alan-suite/actions/workflows/tests.yml/badge.svg)](https://github.com/Alantustoni/alan-suite/actions/workflows/tests.yml)
+[![tests](https://github.com/Alantustoni/contas-a-pagar-suite/actions/workflows/tests.yml/badge.svg)](https://github.com/Alantustoni/contas-a-pagar-suite/actions/workflows/tests.yml)
 
 Aplicativo desktop (Windows) que junta numa janela só as rotinas de um
 setor de contas a pagar que antes rodavam em 5 executáveis separados:
@@ -90,7 +90,7 @@ comportamento do modo legado). Cobrem, entre outros:
 ## Estrutura
 
 ```
-alan_suite/
+contas_a_pagar_suite/
 ├── core/        config central, histórico, paths, tema, utils (valor/data BR)
 ├── modules/     regras de negócio, sem interface (ret, retorno, usinas, ...)
 ├── ui/          interface CustomTkinter — uma tela por módulo
@@ -103,7 +103,7 @@ tests/           pytest
 ```
 
 Os dados do usuário (config ativa, histórico e logs) ficam em
-`~/.alan_suite/`, fora da pasta do programa.
+`~/.contas_a_pagar_suite/`, fora da pasta do programa.
 
 ## Layout CNAB240 — segmento G (usado pelo Juntador e pela Importação)
 

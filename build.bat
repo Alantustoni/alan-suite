@@ -1,13 +1,13 @@
 @echo off
-REM ── Build do ALAN Suite (.EXE) ──────────────────────────────────────
+REM ── Build do Contas a Pagar Suite (.EXE) ──────────────────────────────────────
 REM Requisitos: pip install pyinstaller  (alem do requirements.txt)
 cd /d "%~dp0"
 
 pyinstaller --noconfirm --clean --onefile --windowed ^
-  --name "ALAN Suite" ^
+  --name "Contas a Pagar Suite" ^
   --add-data "config.json;." ^
   --collect-all customtkinter ^
-  --paths "alan_suite\vendor\remessa_v3" ^
+  --paths "contas_a_pagar_suite\vendor\remessa_v3" ^
   --hidden-import services ^
   --hidden-import services.parsers ^
   --hidden-import services.reconciler ^
@@ -29,5 +29,5 @@ pyinstaller --noconfirm --clean --onefile --windowed ^
   main.py
 
 echo.
-echo ── Build concluido. O executavel esta em dist\"ALAN Suite.exe" ──
+echo ── Build concluido. O executavel esta em dist\"Contas a Pagar Suite.exe" ──
 pause
