@@ -59,7 +59,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
-No Windows também dá para usar `iniciar.bat`.
+Não precisa de variável de ambiente nem de configuração prévia: na primeira
+execução o app cria `~/.contas_a_pagar_suite/` com a config de fábrica. No
+Windows também dá para usar `iniciar.bat`.
 
 ### Gerar o executável
 
