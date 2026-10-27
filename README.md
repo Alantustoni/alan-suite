@@ -13,6 +13,8 @@ repositório é a versão pública: **todos os dados são sintéticos** (CNPJs,
 códigos de barras, agência/conta e nomes de empresas e fornecedores foram
 trocados por valores fictícios com dígito verificador válido).
 
+![Tela inicial do aplicativo: painel do dia com execuções, conciliados, pendências e inconsistências, e o menu com os módulos](docs/img/tela-inicio.png)
+
 > **English summary** — Desktop app (Python + CustomTkinter) for accounts
 > payable in Brazil. It merges and validates CNAB240 bank files (Bradesco /
 > Itaú), combines SISPAG payment returns, reconciles the bank's DDA
